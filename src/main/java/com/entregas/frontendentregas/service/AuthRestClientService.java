@@ -4,8 +4,11 @@
  */
 package com.entregas.frontendentregas.service;
 
+import com.entregas.frontendentregas.model.MotoDTO;
 import com.entregas.frontendentregas.model.UserDTO;
 import com.entregas.frontendentregas.model.UserRequestDTO;
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -35,7 +38,7 @@ public class AuthRestClientService {
 
     public void registrar(UserDTO user) {
 
-        if (!user.getSenha().equals(user.getConfirmarSenha())) {
+        if (user.getSenha() == null || !user.getSenha().equals(user.getConfirmarSenha())) {
             throw new ResponseStatusException(
                     HttpStatusCode.valueOf(400),
                     "Senha e Confirmar Senha Diferentes");
@@ -48,5 +51,14 @@ public class AuthRestClientService {
                 .body(user)
                 .retrieve()
                 .body(String.class);
+    }
+    public List<MotoDTO> listarMoto(String token) {
+        MotoDTO[] editais = restClient.get()
+                .uri("/auth/motorista")
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .body(MotoDTO[].class);
+
+        return Arrays.asList(editais);
     }    
 }
