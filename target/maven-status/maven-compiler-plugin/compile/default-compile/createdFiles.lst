@@ -1,0 +1,6 @@
+com\entregas\frontendentregas\service\AuthRestClientService.class
+com\entregas\frontendentregas\FrontendentregasApplication.class
+com\entregas\frontendentregas\model\UserRequestDTO.class
+com\entregas\frontendentregas\model\UserDTO.class
+com\entregas\frontendentregas\controller\AuthController.class
+com\entregas\frontendentregas\model\MotoDTO.class
