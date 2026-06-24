@@ -4,6 +4,7 @@
  */
 package com.entregas.frontendentregas.service;
 
+import com.entregas.frontendentregas.model.EntregaDTO;
 import com.entregas.frontendentregas.model.MotoDTO;
 import com.entregas.frontendentregas.model.UserDTO;
 import com.entregas.frontendentregas.model.UserRequestDTO;
@@ -58,6 +59,15 @@ public class AuthRestClientService {
                 .header("Authorization", "Bearer " + token)
                 .retrieve()
                 .body(MotoDTO[].class);
+
+        return Arrays.asList(editais);
+    }
+    public List<EntregaDTO> listarEntrega(String token) {
+        EntregaDTO[] editais = restClient.get()
+                .uri("/auth/entrega")
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .body(EntregaDTO[].class);
 
         return Arrays.asList(editais);
     }    

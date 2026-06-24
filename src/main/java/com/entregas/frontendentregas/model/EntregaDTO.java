@@ -8,19 +8,21 @@ package com.entregas.frontendentregas.model;
  *
  * @author joaop
  */
-public class MotoDTO {
+public class EntregaDTO {
     private Long id;
-    private Long usuario_id;
+    private Long cliente_id;
     private String nome;
+     private String descricao;
     private String status;
 
-    public MotoDTO() {
+    public EntregaDTO() {
     }
 
-    public MotoDTO(Long id, Long usuario_id, String nome, String status) {
+    public EntregaDTO(Long id, Long cliente_id, String nome, String descricao, String status) {
         this.id = id;
-        this.usuario_id = usuario_id;
+        this.cliente_id = cliente_id;
         this.nome = nome;
+        this.descricao = descricao;
         this.status = status;
     }
 
@@ -32,12 +34,12 @@ public class MotoDTO {
         this.id = id;
     }
 
-    public Long getUsuario_id() {
-        return usuario_id;
+    public Long getCliente_id() {
+        return cliente_id;
     }
 
-    public void setUsuario_id(Long usuario_id) {
-        this.usuario_id = usuario_id;
+    public void setCliente_id(Long cliente_id) {
+        this.cliente_id = cliente_id;
     }
 
     public String getNome() {
@@ -48,6 +50,14 @@ public class MotoDTO {
         this.nome = nome;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -55,5 +65,5 @@ public class MotoDTO {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
 }

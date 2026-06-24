@@ -40,16 +40,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
 <div th:replace="~{fragments/layout :: custom-header}"></div>
 
-<h3>Lista dos Motoristas</h3>
+<h3>Lista das Entregas</h3>
 
 <table>
     <tr>
         <th>Nome</th>
+        <th>Descrição</th>
         <th>Status</th>
     </tr>
 
-    <tr th:each="f : ${motorista}">
+    <tr th:each="f : ${entrega}">
         <td th:text="${f.nome}"></td>
+        <td th:text="${f.descricao}"></td>
         <td th:text="${f.status}"></td>
     </tr>
 </table>
