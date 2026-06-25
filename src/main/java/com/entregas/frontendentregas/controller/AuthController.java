@@ -28,17 +28,19 @@ public class AuthController {
     
     @GetMapping("/")
     public String home(
-    HttpSession session
-    ){
-        Object token = session.getAttribute("token");
-        
-        if (token == null || token.toString().isBlank()) {
-    return "redirect:/login";
-}
-        
+    ){        
         return "index";
     }
-    
+    @GetMapping("/tela")
+    public String tela(
+     HttpSession session
+    ){Object token = session.getAttribute("token");
+        
+     if (token == null || token.toString().isBlank()) {
+    return "redirect:/login";
+}
+     return "tela";
+    }
     @GetMapping("/login")
     public String login(
             Model model
@@ -59,7 +61,7 @@ public String logar(
 
         session.setAttribute("token", token);
 
-        return "redirect:/";
+        return "redirect:/tela";
 
     } catch (Exception e) {
 

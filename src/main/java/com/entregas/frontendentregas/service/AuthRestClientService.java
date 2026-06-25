@@ -54,21 +54,21 @@ public class AuthRestClientService {
                 .body(String.class);
     }
     public List<MotoDTO> listarMoto(String token) {
-        MotoDTO[] editais = restClient.get()
+        MotoDTO[] motorista = restClient.get()
                 .uri("/auth/motorista")
                 .header("Authorization", "Bearer " + token)
                 .retrieve()
                 .body(MotoDTO[].class);
 
-        return Arrays.asList(editais);
+        return Arrays.asList(motorista);
     }
     public List<EntregaDTO> listarEntrega(String token) {
-        EntregaDTO[] editais = restClient.get()
+        EntregaDTO[] entregas = restClient.get()
                 .uri("/auth/entrega")
                 .header("Authorization", "Bearer " + token)
                 .retrieve()
                 .body(EntregaDTO[].class);
 
-        return Arrays.asList(editais);
+        return Arrays.asList(entregas);
     }    
 }

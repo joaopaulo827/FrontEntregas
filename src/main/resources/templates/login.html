@@ -4,7 +4,6 @@
         <title>Tela de Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <style>
 
             body{
@@ -67,17 +66,22 @@
             button:hover{
                 background-color: #333333;
             }
-            .links{
+            links{
                 margin-top: 15px;
             }
-
+            h3{
+                color: #807f7f;  
+            }
         </style>
     </head>
 
-    <body>
+    <body>        
         <div class="container">
+            
             <h1>LOGIN</h1>
-
+            <h3>Apenas funcionários que estejam trabalhando</h3>
+            <h3> estão autorizados a realizar o login.</h3>
+            
             <form th:action="@{/logar}" 
                   th:object="${credenciais}" 
                   method="post">
@@ -99,7 +103,13 @@
                     </button>
                 </a>
             </div>
-
+                    <div class="sair">
+            <a href="/">
+                <button type="button">
+                    Voltar
+                </button>
+            </a>
+        </div>
         </div>
     </body>
 </html>
