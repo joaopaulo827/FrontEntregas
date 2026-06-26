@@ -66,7 +66,7 @@
             button:hover{
                 background-color: #333333;
             }
-            links{
+            .links{
                 margin-top: 15px;
             }
             h3{
@@ -74,25 +74,23 @@
             }
         </style>
     </head>
-
+        
     <body>        
         <div class="container">
             
             <h1>LOGIN</h1>
-            <h3>Apenas funcionários que estejam trabalhando</h3>
-            <h3> estão autorizados a realizar o login.</h3>
             
             <form th:action="@{/logar}" 
                   th:object="${credenciais}" 
                   method="post">
 
                 <label>Email:</label>
-                <input type="email" th:field="*{email}" required>
+                <input type="email" id="email" oninput="validarCampos()" th:field="*{email}" required>
 
                 <label>Senha:</label>
-                <input type="password" th:field="*{senha}" required>
-
-                <button type="submit">Logar</button>
+                <input type="password" id="senha" oninput="validarCampos()" th:field="*{senha}" required>
+                
+                <button type="submit" id="btn-logar" disabled>Logar</button>
 
             </form>
 
@@ -111,5 +109,6 @@
             </a>
         </div>
         </div>
+       <script src="script.js"></script>
     </body>
 </html>

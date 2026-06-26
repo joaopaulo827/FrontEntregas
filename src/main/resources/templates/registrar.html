@@ -91,35 +91,47 @@
 
                 <label>Nome:</label>
                 <input type="text"
+                       id="nome"
+                       oninput="validarCadastro()"
                        th:field="*{nome}"
                        placeholder="Lambarildo"
                        required />
 
                 <label>Email:</label>
                 <input type="email"
+                       id="email"
+                       oninput="validarCadastro()"
                        th:field="*{email}"
                        placeholder="Lambarildo.peixe@hotmail.com"
                        required />
 
                 <label>Senha:</label>
                 <input type="password"
+                       id="senha"
+                       oninput="validarCadastro()"
                        th:field="*{senha}"
                        required />
                 
                 <label>Confirmar Senha:</label>
                 <input type="password"
+                       id="confirmar"
+                       oninput="validarCadastro()"
                 th:field="*{confirmarSenha}"
                 accept=""required />
                 
-                <button type="submit">
+                <button type="submit"
+                        id="botao"
+                        disabled>
                     Cadastrar
                 </button><br>
-                <a href="/login">
+                <a href="/login"
+                    class="btn">
                     <button type="button">
                         Voltar ao login
                     </button>
                 </a>
             </form>
         </div>
+         <script src="verificacao.js"></script>
     </body>
 </html>

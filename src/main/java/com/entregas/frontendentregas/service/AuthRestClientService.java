@@ -45,7 +45,7 @@ public class AuthRestClientService {
                     "Senha e Confirmar Senha Diferentes");
         }
 
-        user.setRole("CLIENTE");
+        user.setRole("MOTORISTA");
 
         restClient.post()
                 .uri("/auth/registrar")

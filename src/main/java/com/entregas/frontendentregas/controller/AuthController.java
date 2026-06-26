@@ -28,18 +28,13 @@ public class AuthController {
     
     @GetMapping("/")
     public String home(
-    ){        
-        return "index";
-    }
-    @GetMapping("/tela")
-    public String tela(
-     HttpSession session
+     HttpSession session        
     ){Object token = session.getAttribute("token");
         
      if (token == null || token.toString().isBlank()) {
     return "redirect:/login";
 }
-     return "tela";
+     return "index";
     }
     @GetMapping("/login")
     public String login(
@@ -61,7 +56,7 @@ public String logar(
 
         session.setAttribute("token", token);
 
-        return "redirect:/tela";
+        return "redirect:/";
 
     } catch (Exception e) {
 
@@ -109,5 +104,18 @@ public String logar(
             redirectAttributes.addFlashAttribute("erroServidor", e.getMessage());
             return "redirect:/registrar";
         }
+    }
+        @GetMapping("/list")
+    public String listar(HttpSession session, Model model) {
+
+        String token = (String) session.getAttribute("token");
+
+        if (token == null || token.isBlank()) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("motorista", authservice.listarMoto(token));
+
+        return "motorista";
     }
 }
