@@ -50,11 +50,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <th>Descrição</th>
         <th>Status</th>
     </tr>
-
     <tr th:each="f : ${entrega}">
         <td th:text="${f.produto}"></td>
         <td th:text="${f.descricao}"></td>
         <td th:text="${f.status}"></td>
+        <td>
+        <a th:href="@{/editar(id=${f.id})}">Editar</a>
+        </td>
     </tr>
 </table>
 </body>

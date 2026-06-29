@@ -70,5 +70,18 @@ public class AuthRestClientService {
                 .body(EntregaDTO[].class);
 
         return Arrays.asList(entregas);
-    }    
+    }
+    public EntregaDTO buscarEntrega(Long id) {
+    return restClient.get()
+            .uri("/auth/entrega/{id}", id)
+            .retrieve()
+            .body(EntregaDTO.class);
+}
+    public void atualizarEntrega(EntregaDTO entrega) {
+    restClient.put()
+            .uri("/auth/entrega/{id}", entrega.getId())
+            .body(entrega)
+            .retrieve()
+            .body(String.class);
+}
 }
