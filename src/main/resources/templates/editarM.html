@@ -17,6 +17,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <form th:action="@{/motorista/salvar}"th:object="${motorista}"method="post">
             <input type="hidden" th:field="*{id}" />
             
+            <input type="hidden" th:field="*{usuario_id}" />
+            
             <label>Nome:</label>
             <input type="text" th:field="*{nome}" /><br>            
             

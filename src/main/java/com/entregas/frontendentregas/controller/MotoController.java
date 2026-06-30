@@ -46,9 +46,15 @@ public class MotoController {
 
     return "editarM";
 }
-    @PostMapping("/salvar")
-    public String salvarDados(@ModelAttribute  MotoDTO motorista){
+@PostMapping("/salvar")
+public String salvarDados(@ModelAttribute MotoDTO motorista){
+
+    MotoDTO motoristaAtual = service.buscarMotorista(motorista.getId());
+
+    motorista.setUsuario_id(motoristaAtual.getUsuario_id());
+
     service.atualizarMotorista(motorista);
+
     return "redirect:/motorista/list";        
-    }    
+}    
 }
