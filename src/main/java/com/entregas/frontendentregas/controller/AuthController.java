@@ -73,8 +73,7 @@ public String logar(
         model.addAttribute("user", newUser);
         return "registrar";
     }
-    
-    @PostMapping("/registrar")
+        @PostMapping("/registrar")
     public String mandarRegistro(
             @ModelAttribute UserDTO user,
             RedirectAttributes redirectAttributes
@@ -104,18 +103,5 @@ public String logar(
             redirectAttributes.addFlashAttribute("erroServidor", e.getMessage());
             return "redirect:/registrar";
         }
-    }
-        @GetMapping("/list")
-    public String listar(HttpSession session, Model model) {
-
-        String token = (String) session.getAttribute("token");
-
-        if (token == null || token.isBlank()) {
-            return "redirect:/login";
-        }
-
-        model.addAttribute("motorista", authservice.listarMoto(token));
-
-        return "motorista";
     }
 }

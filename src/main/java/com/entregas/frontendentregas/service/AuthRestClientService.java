@@ -53,6 +53,14 @@ public class AuthRestClientService {
                 .retrieve()
                 .body(String.class);
     }
+    public void criarEntrega(EntregaDTO entrega, String token) {
+    restClient.post()
+            .uri("/entrega/criar")
+            .header("Authorization", "Bearer " + token)
+            .body(entrega)
+            .retrieve()
+            .toBodilessEntity();
+}
     public List<MotoDTO> listarMoto(String token) {
         MotoDTO[] motorista = restClient.get()
                 .uri("/auth/motorista")

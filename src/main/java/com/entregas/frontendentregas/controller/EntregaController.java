@@ -38,6 +38,15 @@ public class EntregaController {
 
         return "entrega";
     }
+    @PostMapping("/criarE")
+    public String criar(@ModelAttribute EntregaDTO entrega, HttpSession session) {
+
+        String token = (String) session.getAttribute("token");
+
+        service.criarEntrega(entrega, token);
+
+        return "criarE";
+    }
     @GetMapping("/editarE")
     public String editar(@RequestParam Long id, Model model) {
 
