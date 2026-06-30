@@ -84,4 +84,17 @@ public class AuthRestClientService {
             .retrieve()
             .body(String.class);
 }
+    public MotoDTO buscarMotorista(Long id) {
+    return restClient.get()
+            .uri("/auth/motorista/{id}", id)
+            .retrieve()
+            .body(MotoDTO.class);
+}
+    public void atualizarMotorista(MotoDTO motorista) {
+    restClient.put()
+            .uri("/auth/motorista/{id}", motorista.getId())
+            .body(motorista)
+            .retrieve()
+            .body(String.class);
+}    
 }

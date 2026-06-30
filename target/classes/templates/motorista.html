@@ -44,6 +44,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <tr th:each="f : ${motorista}">
         <td th:text="${f.nome}"></td>
         <td th:text="${f.status}"></td>
+        <td>
+        <a th:href="@{/motorista/editarM(id=${f.id})}">Editar</a>
+        </td>        
     </tr>
 </table>
 </body>

@@ -38,12 +38,12 @@ public class EntregaController {
 
         return "entrega";
     }
-    @GetMapping("/editar")
+    @GetMapping("/editarE")
     public String editar(@RequestParam Long id, Model model) {
 
     model.addAttribute("entrega", service.buscarEntrega(id));
 
-    return "editar";
+    return "editarE";
 }
     @PostMapping("/salvar")
     public String salvarDados(@ModelAttribute  EntregaDTO entrega){
