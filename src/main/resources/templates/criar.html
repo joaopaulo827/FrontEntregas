@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Entrega</title>
+</head>
+<body>
+
+<h2>Nova Entrega</h2>
+
+<form th:action="@{/entrega/criar}"
+      th:object="${entrega}"
+      method="post">
+
+    <label>Produto</label>
+    <input type="text" th:field="*{produto}">
+    <br><br>
+
+    <label>Descrição</label>
+    <input type="text" th:field="*{descricao}">
+    <br><br>
+
+    <button type="submit" class="btn btn-success">
+        Salvar
+    </button>
+    <br><br>
+    <button th:href="@{/entrega/list}" class="btn btn-secondary">
+        Cancelar
+    </button>
+</form>
+
+</body>
+</html>

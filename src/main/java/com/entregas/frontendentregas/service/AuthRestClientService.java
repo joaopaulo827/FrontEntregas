@@ -38,7 +38,6 @@ public class AuthRestClientService {
     }
 
     public void registrar(UserDTO user) {
-
         if (user.getSenha() == null || !user.getSenha().equals(user.getConfirmarSenha())) {
             throw new ResponseStatusException(
                     HttpStatusCode.valueOf(400),
@@ -55,9 +54,17 @@ public class AuthRestClientService {
     }
     public void criarEntrega(EntregaDTO entrega, String token) {
     restClient.post()
-            .uri("/entrega/criar")
+            .uri("/auth/entrega/criar")
             .header("Authorization", "Bearer " + token)
             .body(entrega)
+            .retrieve()
+            .toBodilessEntity();
+}
+    public void adicionarMoto(MotoDTO moto, String token) {
+    restClient.post()
+            .uri("/auth/motorista/adicionar")
+            .header("Authorization", "Bearer " + token)
+            .body(moto)
             .retrieve()
             .toBodilessEntity();
 }

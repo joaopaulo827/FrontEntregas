@@ -39,6 +39,21 @@ public class MotoController {
 
         return "motorista";
     }
+    @GetMapping("/adicionar")
+    public String criarForm(Model model) {
+        model.addAttribute("motorista", new MotoDTO());
+        return "adicionar";
+    }
+    
+    @PostMapping("/adicionar")
+    public String criar(@ModelAttribute MotoDTO moto, HttpSession session) {
+
+        String token = (String) session.getAttribute("token");
+
+        service.adicionarMoto(moto, token);
+
+        return "redirect:/motorista/list";
+    }    
     @GetMapping("/editarM")
     public String editar(@RequestParam Long id, Model model) {
 

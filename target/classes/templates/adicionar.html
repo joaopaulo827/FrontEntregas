@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Motorista</title>
+</head>
+<body>
+
+<h2>Novo Motorista</h2>
+
+<form th:action="@{/motorista/adicionar}"
+      th:object="${motorista}"
+      method="post">
+
+    <label>Nome</label>
+    <input type="text" th:field="*{nome}">
+    <br><br>
+
+    <label>Status</label>
+    <input type="text" th:field="*{status}">
+    <br><br>
+
+    <button type="submit" class="btn btn-success">
+        Salvar
+    </button>
+    <br><br>
+    <button th:href="@{/motorista/list}" class="btn btn-secondary">
+        Cancelar
+    </button>
+</form>
+
+</body>
+</html>
