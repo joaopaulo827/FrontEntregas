@@ -45,7 +45,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <td th:text="${f.descricao}"></td>
         <td th:text="${f.status}"></td>
         <td>
-            <button th:href="@{/entrega/editarE(id=${f.id})}">Editar</button>
+            <a th:href="@{/entrega/editarE(id=${f.id})}">Editar</a>
         </td>
     </tr>
 </table>
