@@ -66,7 +66,7 @@ public String salvarDados(@ModelAttribute MotoDTO motorista){
 
     MotoDTO motoristaAtual = service.buscarMotorista(motorista.getId());
 
-    motorista.setUsuario_id(motoristaAtual.getUsuario_id());
+    motorista.setId(motoristaAtual.getId());
 
     service.atualizarMotorista(motorista);
 

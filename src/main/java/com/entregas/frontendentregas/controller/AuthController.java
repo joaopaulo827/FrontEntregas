@@ -77,12 +77,10 @@ public String logar(
     public String mandarRegistro(
             @ModelAttribute UserDTO user,
             RedirectAttributes redirectAttributes
-    ) {
-        
+    ) {        
         try {
             authservice.registrar(user);
-            
-            
+      
             redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastro realizado com sucesso! Faça o login.");
             return "redirect:/login";
             
@@ -92,10 +90,7 @@ public String logar(
                     .readTree(
                             ex.getResponseBodyAsString()
                     ).get("message").asString(); 
-            redirectAttributes.addFlashAttribute(
-                    "erroServidor", 
-                    mensagemErroDoBackend
-            );                       
+            redirectAttributes.addFlashAttribute("erroServidor",mensagemErroDoBackend);                       
             return "redirect:/registrar";
             
         } catch (Exception e) {
