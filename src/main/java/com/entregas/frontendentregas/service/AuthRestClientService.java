@@ -52,6 +52,13 @@ public class AuthRestClientService {
                 .retrieve()
                 .body(String.class);
     }
+    public void atualizar(UserDTO user) {
+        restClient.put()
+                .uri("/auth/atualizar")
+                .body(user)
+                .retrieve()
+                .body(String.class);
+    }    
     public void criarEntrega(EntregaDTO entrega, String token) {
     restClient.post()
             .uri("/auth/entrega/criar")

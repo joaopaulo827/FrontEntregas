@@ -99,4 +99,28 @@ public String logar(
             return "redirect:/registrar";
         }
     }
+    @GetMapping("/atualizar")
+    public String atualizar(Model model) {
+        model.addAttribute("user", new UserDTO());
+        return "atualizar";
+    }
+    @PostMapping("/atualizar")
+    public String atualizar(@ModelAttribute UserDTO user,
+                            RedirectAttributes redirectAttributes) {
+        try {
+            authservice.atualizar(user);
+            redirectAttributes.addFlashAttribute(
+                "mensagem", 
+                "Senha atualizada com sucesso!"
+            );
+            return "redirect:/login";
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute(
+                "erro",
+                "Não foi possível atualizar a senha."
+            );
+            return "redirect:/atualizar";
+        }
+    }    
 }
