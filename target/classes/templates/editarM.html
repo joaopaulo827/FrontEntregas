@@ -22,7 +22,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <input type="text" th:field="*{nome}" /><br>            
             
             <label>Status:</label>
-            <input type="text" th:field="*{status}" /><br>
+            <select th:field="*{status}">
+                <option value="ATIVO">ATIVO</option>
+                <option value="INATIVO">INATIVO</option>
+            </select><br>
             
             <button type="submit">Salvar</button>
         </form>

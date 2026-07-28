@@ -39,14 +39,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <th>Produto</th>
         <th>Descrição</th>
         <th>Status</th>
+        <th>Id Endereco</th>
+        <th>Id Motorista</th>
     </tr>
     <tr th:each="f : ${entrega}">
         <td th:text="${f.produto}"></td>
         <td th:text="${f.descricao}"></td>
         <td th:text="${f.status}"></td>
         <td th:text="${f.enderecoId}"></td>
+        <td th:text="${f.motoristaId}"></td>
         <td>
-            <a th:href="@{/entrega/editarE(id=${f.id})}">Editar</a>
+            <a class="btn btn-secondary" th:href="@{/entrega/editarE(id=${f.id})}">Editar</a>
         </td>
     </tr>
 </table>

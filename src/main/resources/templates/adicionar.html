@@ -17,8 +17,9 @@
     <br><br>
 
     <label>Status</label>
-    <input type="text" th:field="*{status}">
-    <br><br>
+    <select th:field="*{status}">
+    <option value="ATIVO">ATIVO</option>
+    </select><br><br>
 
     <button type="submit" class="btn btn-success">
         Salvar

@@ -19,7 +19,15 @@
     <label>Descrição</label>
     <input type="text" th:field="*{descricao}">
     <br><br>
-
+    
+    <label>Status</label>
+    <select th:field="*{status}">
+    <option value="NAO ENTREGUE">NÃO ENTREGUE</option>
+    </select><br><br>
+    
+    <label>Endereço</label>
+    <input type="text" th:field="*{enderecoId}" />
+    <br><br>
     <button type="submit" class="btn btn-success">
         Salvar
     </button>

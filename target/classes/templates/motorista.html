@@ -47,7 +47,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <td th:text="${f.nome}"></td>
         <td th:text="${f.status}"></td>
         <td>
-        <a th:href="@{/motorista/editarM(id=${f.id})}">Editar</a>
+        <a class="btn btn-secondary" th:href="@{/motorista/editarM(id=${f.id})}">Editar</a>
         </td>        
     </tr>
 </table>

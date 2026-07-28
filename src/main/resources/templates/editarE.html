@@ -24,8 +24,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <input type="text" th:field="*{descricao}" /><br>
             
             <label>Status:</label>
-            <input type="text" th:field="*{status}" /><br>
+            <select th:field="*{status}">
+                <option value="ENTREGUE">ENTREGUE</option>
+                <option value="EM ANDAMENTO">EM ANDAMENTO</option>
+                <option value="NAO ENTREGUE">NÃO ENTREGUE</option>
+                <option value="DEVOLVIDO">DEVOLVIDO</option>
+            </select><br>
             
+            <label>Endereço</label>
+            <input type="text" th:field="*{enderecoId}" />
+            <br>
+            <label>Motorista</label>
+            <input type="text" th:field="*{motoristaId}" />
+            <br>
             <button type="submit">Salvar</button>
         </form>
         </main>
