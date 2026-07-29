@@ -37,17 +37,18 @@ public class AuthRestClientService {
                 .body(String.class);
     }
 
-    public void registrar(UserDTO user) {
+    public void registrar(UserDTO user, String token) {
         if (user.getSenha() == null || !user.getSenha().equals(user.getConfirmarSenha())) {
             throw new ResponseStatusException(
                     HttpStatusCode.valueOf(400),
                     "Senha e Confirmar Senha Diferentes");
         }
-
-        user.setRole("MOTORISTA");
-
+        
+         user.setRole("MOTORISTA");
+         
         restClient.post()
                 .uri("/auth/registrar")
+                .header("Authorization", "Bearer " + token)
                 .body(user)
                 .retrieve()
                 .body(String.class);

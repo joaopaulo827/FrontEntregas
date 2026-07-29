@@ -73,37 +73,48 @@ public String logar(
         model.addAttribute("user", newUser);
         return "registrar";
     }
-        @PostMapping("/registrar")
-    public String mandarRegistro(
-            @ModelAttribute UserDTO user,
-            RedirectAttributes redirectAttributes
-    ) {        
-        try {
-            authservice.registrar(user);
-      
-            redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastro realizado com sucesso! Faça o login.");
-            return "redirect:/login";
-            
-        } catch (HttpStatusCodeException ex) {
-            
-            String mensagemErroDoBackend = new ObjectMapper()
-                    .readTree(
-                            ex.getResponseBodyAsString()
-                    ).get("message").asString(); 
-            redirectAttributes.addFlashAttribute("erroServidor",mensagemErroDoBackend);                       
-            return "redirect:/registrar";
-            
-        } catch (Exception e) {
-            
-            redirectAttributes.addFlashAttribute("erroServidor", e.getMessage());
-            return "redirect:/registrar";
-        }
+@PostMapping("/registrar")
+public String mandarRegistro(
+        @ModelAttribute UserDTO user,
+        HttpSession session,
+        RedirectAttributes redirectAttributes) {
+
+    try {
+        String token = (String) session.getAttribute("token");
+
+        authservice.registrar(user, token);
+
+        redirectAttributes.addFlashAttribute(
+                "mensagemSucesso",
+                "Cadastro realizado com sucesso!"
+        );
+        return "redirect:/";
+
+    } catch (HttpStatusCodeException ex) {
+
+        String mensagemErroDoBackend = new ObjectMapper()
+                .readTree(ex.getResponseBodyAsString())
+                .get("message")
+                .asText();
+
+        redirectAttributes.addFlashAttribute("erroServidor", mensagemErroDoBackend);
+        return "redirect:/registrar";
+
+    } catch (Exception e) {
+
+        redirectAttributes.addFlashAttribute("erroServidor", e.getMessage());
+        return "redirect:/registrar";
     }
+}
     @GetMapping("/atualizar")
-    public String atualizar(Model model) {
-        model.addAttribute("user", new UserDTO());
-        return "atualizar";
+    public String atualizar(HttpSession session, Model model) {
+    if (session.getAttribute("token") == null) {
+        return "redirect:/login";
     }
+
+    model.addAttribute("user", new UserDTO());
+    return "registrar";
+}
     @PostMapping("/atualizar")
     public String atualizar(@ModelAttribute UserDTO user,
                             RedirectAttributes redirectAttributes) {
