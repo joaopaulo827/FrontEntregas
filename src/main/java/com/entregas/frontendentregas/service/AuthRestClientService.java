@@ -4,6 +4,7 @@
  */
 package com.entregas.frontendentregas.service;
 
+import com.entregas.frontendentregas.model.EnderecoDTO;
 import com.entregas.frontendentregas.model.EntregaDTO;
 import com.entregas.frontendentregas.model.MotoDTO;
 import com.entregas.frontendentregas.model.UserDTO;
@@ -53,6 +54,13 @@ public class AuthRestClientService {
                 .retrieve()
                 .body(String.class);
     }
+    public UserDTO obterUsuario(String token) {
+        return restClient.get()
+                .uri("/auth/me")
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .body(UserDTO.class);
+    }    
     public void atualizar(UserDTO user) {
         restClient.put()
                 .uri("/auth/atualizar")
@@ -60,22 +68,6 @@ public class AuthRestClientService {
                 .retrieve()
                 .body(String.class);
     }    
-    public void criarEntrega(EntregaDTO entrega, String token) {
-    restClient.post()
-            .uri("/auth/entrega/criar")
-            .header("Authorization", "Bearer " + token)
-            .body(entrega)
-            .retrieve()
-            .toBodilessEntity();
-}
-    public void adicionarMoto(MotoDTO moto, String token) {
-    restClient.post()
-            .uri("/auth/motorista/adicionar")
-            .header("Authorization", "Bearer " + token)
-            .body(moto)
-            .retrieve()
-            .toBodilessEntity();
-}
     public List<MotoDTO> listarMoto(String token) {
         MotoDTO[] motorista = restClient.get()
                 .uri("/auth/motorista")
@@ -94,6 +86,15 @@ public class AuthRestClientService {
 
         return Arrays.asList(entregas);
     }
+    public List<EnderecoDTO> listarEndereco(String token) {
+        EnderecoDTO[] endereco = restClient.get()
+                .uri("/auth/endereco")
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .body(EnderecoDTO[].class);
+
+        return Arrays.asList(endereco);
+    }    
     public EntregaDTO buscarEntrega(Long id) {
     return restClient.get()
             .uri("/auth/entrega/{id}", id)
@@ -107,6 +108,21 @@ public class AuthRestClientService {
             .retrieve()
             .body(String.class);
 }
+    public void atualizarIdMotorista(EntregaDTO entrega) {
+    restClient.put()
+            .uri("/auth/entrega/{id}/motorista", entrega.getId())
+            .body(entrega)
+            .retrieve()
+            .body(String.class);
+}    
+    public void criarEntrega(EntregaDTO entrega, String token) {
+    restClient.post()
+            .uri("/auth/entrega/criar")
+            .header("Authorization", "Bearer " + token)
+            .body(entrega)
+            .retrieve()
+            .toBodilessEntity();
+}
     public MotoDTO buscarMotorista(Long id) {
     return restClient.get()
             .uri("/auth/motorista/{id}", id)
@@ -119,5 +135,34 @@ public class AuthRestClientService {
             .body(motorista)
             .retrieve()
             .body(String.class);
-}    
+}
+    public void adicionarMoto(MotoDTO moto, String token) {
+    restClient.post()
+            .uri("/auth/motorista/adicionarM")
+            .header("Authorization", "Bearer " + token)
+            .body(moto)
+            .retrieve()
+            .toBodilessEntity();
+}
+    public EnderecoDTO buscarEndereco(Long id) {
+    return restClient.get()
+            .uri("/auth/endereco/{id}", id)
+            .retrieve()
+            .body(EnderecoDTO.class);
+}
+    public void atualizarEndereco(EnderecoDTO endereco) {
+    restClient.put()
+            .uri("/auth/endereco/{id}", endereco.getId())
+            .body(endereco)
+            .retrieve()
+            .body(String.class);
+}
+    public void adicionarEndereco(EnderecoDTO endereco, String token) {
+    restClient.post()
+            .uri("/auth/endereco/adicionarED")
+            .header("Authorization", "Bearer " + token)
+            .body(endereco)
+            .retrieve()
+            .toBodilessEntity();
+}     
 }

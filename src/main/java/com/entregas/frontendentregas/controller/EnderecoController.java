@@ -4,7 +4,8 @@
  */
 package com.entregas.frontendentregas.controller;
 
-import com.entregas.frontendentregas.model.EntregaDTO;
+
+import com.entregas.frontendentregas.model.EnderecoDTO;
 import com.entregas.frontendentregas.service.AuthRestClientService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
- * @author joaop
+ * @author Aluno
  */
 @Controller
-@RequestMapping("/entrega")
-public class EntregaController {
+@RequestMapping("/endereco")
+public class EnderecoController {
+
     @Autowired
     private AuthRestClientService service;
     @GetMapping("/list")
@@ -34,47 +36,41 @@ public class EntregaController {
             return "redirect:/login";
         }
 
-        model.addAttribute("entrega", service.listarEntrega(token));
+        model.addAttribute("endereco", service.listarEndereco(token));
 
-        return "entrega";
+        return "endereco";
     }
-    @GetMapping("/criar")
+    @GetMapping("/adicionarED")
     public String criarForm(Model model) {
-        model.addAttribute("entrega", new EntregaDTO());
-        return "criar";
+        model.addAttribute("endereco", new EnderecoDTO());
+        return "adicionarED";
     }
     
-    @PostMapping("/criar")
-    public String criar(@ModelAttribute EntregaDTO entrega, HttpSession session) {
+    @PostMapping("/adicionarED")
+    public String criar(@ModelAttribute EnderecoDTO endereco, HttpSession session) {
 
         String token = (String) session.getAttribute("token");
 
-        service.criarEntrega(entrega, token);
+        service.adicionarEndereco(endereco, token);
 
-        return "redirect:/entrega/list";
-    }
-    @GetMapping("/editarE")
+        return "redirect:/endereco/list";
+    }    
+    @GetMapping("/editarED")
     public String editar(@RequestParam Long id, Model model) {
 
-    model.addAttribute("entrega", service.buscarEntrega(id));
+    model.addAttribute("endereco", service.buscarEndereco(id));
 
-    return "editarE";
+    return "editarED";
 }
-    @GetMapping("/motoristaE")
-    public String editarMotorista(@RequestParam Long id, Model model) {
+@PostMapping("/salvar")
+public String salvarDados(@ModelAttribute EnderecoDTO endereco){
 
-    model.addAttribute("entrega", service.buscarEntrega(id));
+    EnderecoDTO motoristaAtual = service.buscarEndereco(endereco.getId());
 
-    return "motoristaE";
-}    
-    @PostMapping("/salvar")
-    public String salvarDados(@ModelAttribute  EntregaDTO entrega){
-    service.atualizarEntrega(entrega);
-    return "redirect:/entrega/list";        
-    }
-    @PostMapping("/salvarMotorista")
-    public String salvarMotorista(EntregaDTO entrega) {
-        service.atualizarIdMotorista(entrega);
-        return "redirect:/entrega/list";
-    }    
-}    
+    endereco.setId(motoristaAtual.getId());
+
+    service.atualizarEndereco(endereco);
+
+    return "redirect:/endereco/list";        
+}     
+}

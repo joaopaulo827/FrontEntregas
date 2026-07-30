@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Endereço</title>
+</head>
+<body>
+
+<h2>Novo Endereço</h2>
+
+<form th:action="@{/endereco/adicionarED}"
+      th:object="${endereco}"
+      method="post">
+
+    <label>Rua:</label>
+    <input type="text" th:field="*{rua}">
+    <br><br>
+
+    <label>Numero:</label>
+    <input type="number" th:field="*{numero}">
+    <br><br>
+
+    <label>Cidade:</label>
+    <input type="text" th:field="*{cidade}">
+    <br><br>
+    
+    <button type="submit" class="btn btn-success">
+        Salvar
+    </button>
+    <br><br>
+    <button th:href="@{/endereco/list}" class="btn btn-secondary">
+        Cancelar
+    </button>
+</form>
+
+</body>
+</html>
