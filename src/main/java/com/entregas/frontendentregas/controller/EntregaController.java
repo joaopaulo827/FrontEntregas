@@ -66,6 +66,13 @@ public class EntregaController {
     model.addAttribute("entrega", service.buscarEntrega(id));
 
     return "motoristaE";
+}
+    @GetMapping("/statusE")
+    public String editarStatus(@RequestParam Long id, Model model) {
+
+    model.addAttribute("entrega", service.buscarEntrega(id));
+
+    return "statusE";
 }    
     @PostMapping("/salvar")
     public String salvarDados(@ModelAttribute  EntregaDTO entrega){
@@ -75,6 +82,11 @@ public class EntregaController {
     @PostMapping("/salvarMotorista")
     public String salvarMotorista(EntregaDTO entrega) {
         service.atualizarIdMotorista(entrega);
+        return "redirect:/entrega/list";
+    }
+    @PostMapping("/salvarStatus")
+    public String salvarStatus(EntregaDTO entrega) {
+        service.atualizarStatus(entrega);
         return "redirect:/entrega/list";
     }    
 }    

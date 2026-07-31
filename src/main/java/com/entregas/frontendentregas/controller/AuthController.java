@@ -64,75 +64,55 @@ public String logar(
         return "redirect:/login";
     }
 }
-
     @GetMapping("/registrar")
-    public String registrar(
-            HttpSession session,
-            Model model
-    ) {
-        String token = (String) session.getAttribute("token");
+    public String registrar(Model model) {
 
-        if (token == null || token.isBlank()) {
-            return "redirect:/login";
-        }
-
-        String role = (String) session.getAttribute("role");
-
-        if (!"ADMIN".equals(role) && !"OPERADOR".equals(role)) {
-            return "redirect:/";
-        }
-
-        UserDTO newUser = new UserDTO();
-        model.addAttribute("user", newUser);
+        model.addAttribute("user", new UserDTO());
 
         return "registrar";
     }
-    @PostMapping("/registrar")
-    public String mandarRegistro(
-            @ModelAttribute UserDTO user,
-            HttpSession session,
-            RedirectAttributes redirectAttributes) {
+@PostMapping("/registrar")
+public String mandarRegistro(
+        @ModelAttribute UserDTO user,
+        RedirectAttributes redirectAttributes) {
 
-        try {
-            String token = (String) session.getAttribute("token");
+    try {
 
-            authservice.registrar(user, token);
+        authservice.registrar(user);
 
-            redirectAttributes.addFlashAttribute(
-                    "mensagemSucesso",
-                    "Cadastro realizado com sucesso!"
-            );
-            return "redirect:/";
+        redirectAttributes.addFlashAttribute(
+                "mensagemSucesso",
+                "Cadastro realizado com sucesso!"
+        );
 
-        } catch (HttpStatusCodeException ex) {
+        return "redirect:/login";
 
-            String mensagemErroDoBackend = new ObjectMapper()
-                    .readTree(ex.getResponseBodyAsString())
-                    .get("message")
-                    .asText();
+    } catch (HttpStatusCodeException ex) {
 
-            redirectAttributes.addFlashAttribute("erroServidor", mensagemErroDoBackend);
-            return "redirect:/registrar";
+        String mensagemErroDoBackend = new ObjectMapper()
+                .readTree(ex.getResponseBodyAsString())
+                .get("message")
+                .asText();
 
-        } catch (Exception e) {
+        redirectAttributes.addFlashAttribute("erroServidor",mensagemErroDoBackend
+        );
 
-            redirectAttributes.addFlashAttribute("erroServidor", e.getMessage());
-            return "redirect:/registrar";
-        }
+        return "redirect:/registrar";
+
+    } catch (Exception e) {
+
+        redirectAttributes.addFlashAttribute("erroServidor",e.getMessage()
+        );
+
+        return "redirect:/registrar";
     }
+}
     @GetMapping("/atualizar")
     public String atualizar(HttpSession session, Model model) {
     String token = (String) session.getAttribute("token");
 
     if (token == null) {
         return "redirect:/login";
-    }
-
-    UserDTO usuario = authservice.obterUsuario(token);
-
-    if (!"ADMIN".equals(usuario.getRole()) &&
-        !"OPERADOR".equals(usuario.getRole())) {
-        return "redirect:/";
     }
 
     model.addAttribute("user", new UserDTO());

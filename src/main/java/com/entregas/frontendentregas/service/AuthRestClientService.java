@@ -38,7 +38,7 @@ public class AuthRestClientService {
                 .body(String.class);
     }
 
-    public void registrar(UserDTO user, String token) {
+    public void registrar(UserDTO user) {
         if (user.getSenha() == null || !user.getSenha().equals(user.getConfirmarSenha())) {
             throw new ResponseStatusException(
                     HttpStatusCode.valueOf(400),
@@ -49,18 +49,10 @@ public class AuthRestClientService {
          
         restClient.post()
                 .uri("/auth/registrar")
-                .header("Authorization", "Bearer " + token)
                 .body(user)
                 .retrieve()
                 .body(String.class);
-    }
-    public UserDTO obterUsuario(String token) {
-        return restClient.get()
-                .uri("/auth/me")
-                .header("Authorization", "Bearer " + token)
-                .retrieve()
-                .body(UserDTO.class);
-    }    
+    }   
     public void atualizar(UserDTO user) {
         restClient.put()
                 .uri("/auth/atualizar")
@@ -108,6 +100,13 @@ public class AuthRestClientService {
             .retrieve()
             .body(String.class);
 }
+    public void atualizarStatus(EntregaDTO entrega) {
+    restClient.put()
+            .uri("/auth/entrega/{id}/status", entrega.getId())
+            .body(entrega)
+            .retrieve()
+            .body(String.class);
+}    
     public void atualizarIdMotorista(EntregaDTO entrega) {
     restClient.put()
             .uri("/auth/entrega/{id}/motorista", entrega.getId())

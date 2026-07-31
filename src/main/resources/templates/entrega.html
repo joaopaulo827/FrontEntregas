@@ -41,8 +41,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <th>Status</th>
         <th>Id Endereco</th>
         <th>Id Motorista</th>
-        <th>Ações</th>
-        <th>Alterar/Adicionar Motorista</th>
+        <th>Editar Produto</th>
+        <th>Adicionar Motorista</th>
+        <th>Editar Status</th>
     </tr>
     <tr th:each="f : ${entrega}">
         <td th:text="${f.produto}"></td>
@@ -54,8 +55,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <a class="btn btn-secondary" th:href="@{/entrega/editarE(id=${f.id})}">Editar</a>
         </td>
         <td>
-            <a class="btn btn-secondary" th:href="@{/entrega/motoristaE(id=${f.id})}">Botão</a>
-        </td>        
+            <a class="btn btn-secondary" th:href="@{/entrega/motoristaE(id=${f.id})}">Adicionar</a>
+        </td>
+        <td>
+            <a class="btn btn-secondary" th:href="@{/entrega/statusE(id=${f.id})}">Editar</a>
+        </td>         
     </tr>
 </table>
 </body>
