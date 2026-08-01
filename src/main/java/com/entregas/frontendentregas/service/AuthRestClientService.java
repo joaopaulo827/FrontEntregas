@@ -86,6 +86,16 @@ public class AuthRestClientService {
                 .body(EnderecoDTO[].class);
 
         return Arrays.asList(endereco);
+    }
+    public List<MotoDTO> listarMotoristasAtivos(String token) {
+
+        MotoDTO[] motoristas = restClient.get()
+                .uri("/auth/motorista/ativos")
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .body(MotoDTO[].class);
+
+        return motoristas == null ? List.of() : Arrays.asList(motoristas);
     }    
     public EntregaDTO buscarEntrega(Long id) {
     return restClient.get()

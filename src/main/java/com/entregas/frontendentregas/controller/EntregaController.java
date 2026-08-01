@@ -61,12 +61,17 @@ public class EntregaController {
     return "editarE";
 }
     @GetMapping("/motoristaE")
-    public String editarMotorista(@RequestParam Long id, Model model) {
+    public String editarMotorista(@RequestParam Long id,HttpSession session,Model model) {
 
-    model.addAttribute("entrega", service.buscarEntrega(id));
+        String token = (String) session.getAttribute("token");
 
-    return "motoristaE";
-}
+        if (token == null || token.isBlank()) {
+            return "redirect:/login";}
+        
+        model.addAttribute("entrega", service.buscarEntrega(id));
+        model.addAttribute("motoristas", service.listarMotoristasAtivos(token));
+        return "motoristaE";
+    }
     @GetMapping("/statusE")
     public String editarStatus(@RequestParam Long id, Model model) {
 

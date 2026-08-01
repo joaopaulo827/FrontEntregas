@@ -4,23 +4,39 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Editar Id Motorista</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <main>
-            <h2>Editar Id</h2>
-            <form th:action="@{/entrega/salvarMotorista}"th:object="${entrega}"method="post">
-            <input type="hidden" th:field="*{id}" />
-            <label>Motorista</label>
-            <input type="number" th:field="*{motoristaId}" />
-            <br>
-            <button type="submit">Salvar</button>
-        </form>
-        </main>
-    </body>
+<head>
+    <title>Editar Id do Motorista</title>
+    <meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+    <h2>Editar Motorista</h2>
+    <form th:action="@{/entrega/salvarMotorista}"
+    th:object="${entrega}"
+    method="post">
+
+    <input type="hidden" th:field="*{id}" />
+    <label>Motorista:</label>
+    <select th:field="*{motoristaId}">
+    <option value="">Selecione um motorista</option>
+
+    <option th:each="m : ${motoristas}"
+    th:value="${m.id}"
+    th:text="${m.nome}">
+    </option>
+    </select>
+    <br><br>  
+    <button type="submit">
+    Salvar
+    </button>
+    <br><br>
+    <a class="btn btn-secondary"
+     th:href="@{/entrega/list}">
+    Cancelar
+    </a>
+    </form>
+    </main>
+</body>
 </html>
