@@ -39,8 +39,15 @@ public class EntregaController {
         return "entrega";
     }
     @GetMapping("/criar")
-    public String criarForm(Model model) {
+    public String criarForm(Model model, HttpSession session) {
+        String token = (String) session.getAttribute("token");
+
+        if (token == null || token.isBlank()) {
+            return "redirect:/login";
+        }
         model.addAttribute("entrega", new EntregaDTO());
+        model.addAttribute("enderecos", service.listarEndereco(token));
+
         return "criar";
     }
     
@@ -54,10 +61,15 @@ public class EntregaController {
         return "redirect:/entrega/list";
     }
     @GetMapping("/editarE")
-    public String editar(@RequestParam Long id, Model model) {
+    public String editar(@RequestParam Long id, Model model, HttpSession session) {
+        
+    String token = (String) session.getAttribute("token");
 
+    if (token == null || token.isBlank()) {
+        return "redirect:/login";
+    }
     model.addAttribute("entrega", service.buscarEntrega(id));
-
+     model.addAttribute("enderecos", service.listarEndereco(token));
     return "editarE";
 }
     @GetMapping("/motoristaE")

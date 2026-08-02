@@ -26,7 +26,13 @@
     </select><br><br>
     
     <label>Endereço</label>
-    <input type="text" th:field="*{enderecoId}" />
+    <select th:field="*{enderecoId}">
+    <option value="">Selecione um endereço</option>
+    <option th:each="e : ${enderecos}"
+    th:value="${e.id}"
+    th:text="${e.id}">
+    </option>
+    </select>
     <br><br>
     <button type="submit" class="btn btn-success">
         Salvar
