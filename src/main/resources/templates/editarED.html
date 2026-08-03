@@ -24,9 +24,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <input type="number" th:field="*{numero}" /><br>
             
             <label>Cidade:</label>
-            <input type="text" th:field="*{cidade}" /><br>
+            <input type="text" th:field="*{cidade}" /><br><br>
             
-            <button type="submit">Salvar</button>
+            <button type="submit">Salvar</button><br>
+            <a class="btn btn-secondary"
+            th:href="@{/endereco/list}">
+            Cancelar
+            </a>
         </form>
         </main>
     </body>

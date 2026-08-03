@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.entregas.frontendentregas.controller;
+import com.entregas.frontendentregas.model.EntregaDTO;
 import com.entregas.frontendentregas.model.UserDTO;
 import com.entregas.frontendentregas.model.UserRequestDTO;
 import com.entregas.frontendentregas.service.AuthRestClientService;
@@ -28,12 +29,14 @@ public class AuthController {
     
     @GetMapping("/")
     public String home(
-     HttpSession session        
-    ){Object token = session.getAttribute("token");
+    Model model, HttpSession session        
+    ){String token = (String) session.getAttribute("token");
         
-     if (token == null || token.toString().isBlank()) {
+     if (token == null || token.isBlank()) {
     return "redirect:/login";
-}
+}     model.addAttribute("entrega", authservice.listarEntrega(token));
+      model.addAttribute("motorista", authservice.listarMoto(token));
+       model.addAttribute("endereco", authservice.listarEndereco(token));
      return "index";
     }
     @GetMapping("/login")

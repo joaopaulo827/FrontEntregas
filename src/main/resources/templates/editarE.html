@@ -23,8 +23,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <label>Descrição:</label>
             <input type="text" th:field="*{descricao}" /><br>
             
-            <label>Status:</label>
-            <input  type="hidden" th:field="*{status}"/><br>
             <label>Endereço:</label>
 
             <select th:field="*{enderecoId}">
@@ -35,7 +33,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </select>
             <br>
             <button type="submit">Salvar</button>
-            <br>
+            <br><br>
             <a class="btn btn-secondary"
             th:href="@{/entrega/list}">
             Cancelar
