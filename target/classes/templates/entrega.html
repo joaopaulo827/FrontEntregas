@@ -12,10 +12,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>        
     </head>
             <style>
-            table {
-            width: 50%;
-            border-collapse: collapse;
-            margin-top: 10px;
+            .tela{
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 40px;
+            font-size: 50px;
+            font-weight: bold;
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.1);
+            font-weight: bold;
+            color: #1F2937;
+            }                 
+            .entrega {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 40px;
             }
             th, td {
             border: 1px solid #000;
@@ -30,10 +42,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
 <div th:replace="~{fragments/layout :: custom-header}"></div>
 
-<h3>Lista das Entregas</h3>
+<h3 class="tela">Lista das Entregas</h3>
+<div class="entrega">
 <a class="btn btn-primary" th:href="@{/entrega/criar}">
     Nova entrega
 </a>
+    <br><br>
 <table>
     <tr>
         <th>Produto</th>
@@ -62,5 +76,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </td>         
     </tr>
 </table>
+</div> 
 </body>
 </html>

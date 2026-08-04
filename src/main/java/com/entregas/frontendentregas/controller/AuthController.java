@@ -36,7 +36,8 @@ public class AuthController {
     return "redirect:/login";
 }     model.addAttribute("entrega", authservice.listarEntrega(token));
       model.addAttribute("motorista", authservice.listarMoto(token));
-       model.addAttribute("endereco", authservice.listarEndereco(token));
+      model.addAttribute("endereco", authservice.listarEndereco(token));
+       
      return "index";
     }
     @GetMapping("/login")

@@ -8,10 +8,75 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <meta charset="UTF-8">
     <title>Adicionar Endereço</title>
 </head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #999999;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            font-size: 22px;
+            margin-top: 15px;
+            text-align: left;
+        }
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: white;
+            background-color: black;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #333333;
+        }
+        .btn-cancelar {
+            display: inline-block;
+            margin-top: 15px;
+        }
+        select{
+            width:100%;
+            height:50px; 
+            font-size:20px;
+            text-align: center;
+        }
+    </style> 
 <body>
-
-<h2>Novo Endereço</h2>
-
+<div class="container">
+    <h2>Novo Endereço</h2>
 <form th:action="@{/endereco/adicionarED}"
       th:object="${endereco}"
       method="post">
@@ -25,17 +90,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <br><br>
 
     <label>Cidade:</label>
-    <input type="text" th:field="*{cidade}">
-    <br><br>
+    <select th:field="*{cidade}">
+    <option value="Curitiba">Curitiba</option>
+    <option value="Londrina">Londrina</option>                    
+    <option value="Maringá">Maringá</option>
+    <option value="Cambé">Cambé</option>            
+    </select><br><br>
     
     <button type="submit" class="btn btn-primary">
         Salvar
     </button>
+</form>
     <br><br>
     <a th:href="@{/endereco/list}" class="btn btn-secondary">
         Cancelar
-    </a>
-</form>
-
+    </a>    
+</div>
 </body>
 </html>
