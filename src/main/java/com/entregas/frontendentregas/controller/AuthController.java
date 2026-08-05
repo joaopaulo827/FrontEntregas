@@ -75,41 +75,41 @@ public String logar(
 
         return "registrar";
     }
-@PostMapping("/registrar")
-public String mandarRegistro(
-        @ModelAttribute UserDTO user,
-        RedirectAttributes redirectAttributes) {
+    @PostMapping("/registrar")
+    public String mandarRegistro(
+            @ModelAttribute UserDTO user,
+            RedirectAttributes redirectAttributes) {
 
-    try {
+        try {
 
-        authservice.registrar(user);
+            authservice.registrar(user);
 
-        redirectAttributes.addFlashAttribute(
-                "mensagemSucesso",
-                "Cadastro realizado com sucesso!"
-        );
+            redirectAttributes.addFlashAttribute(
+                    "mensagemSucesso",
+                    "Cadastro realizado com sucesso!"
+            );
 
-        return "redirect:/login";
+            return "redirect:/login";
 
-    } catch (HttpStatusCodeException ex) {
+        } catch (HttpStatusCodeException ex) {
 
-        String mensagemErroDoBackend = new ObjectMapper()
-                .readTree(ex.getResponseBodyAsString())
-                .get("message")
-                .asText();
+            String mensagemErroDoBackend = new ObjectMapper()
+                    .readTree(ex.getResponseBodyAsString())
+                    .get("message")
+                    .asText();
 
-        redirectAttributes.addFlashAttribute("erroServidor",mensagemErroDoBackend
-        );
+            redirectAttributes.addFlashAttribute("erroServidor",mensagemErroDoBackend
+            );
 
-        return "redirect:/registrar";
+            return "redirect:/registrar";
 
-    } catch (Exception e) {
+        } catch (Exception e) {
 
-        redirectAttributes.addFlashAttribute("erroServidor",e.getMessage()
-        );
+            redirectAttributes.addFlashAttribute("erroServidor",e.getMessage()
+            );
 
-        return "redirect:/registrar";
-    }
+            return "redirect:/registrar";
+        }
 }
     @GetMapping("/atualizar")
     public String atualizar(HttpSession session, Model model) {

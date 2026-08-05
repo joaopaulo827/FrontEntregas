@@ -19,7 +19,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f2f2f2;
             font-family: Arial, sans-serif;
         }
         .container {
@@ -41,7 +40,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             display: block;
             font-size: 22px;
             margin-top: 15px;
-            text-align: left;
+            text-align: center;
         }
         input,
         select {
@@ -88,7 +87,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <input type="text" th:field="*{rua}" /><br>
             
             <label>Numero:</label>
-            <input type="number" th:field="*{numero}" /><br>
+            <input type="number" th:field="*{numero}" min="1"/><br>
             
             <label>Cidade:</label>
             <select th:field="*{cidade}">
