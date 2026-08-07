@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -37,7 +38,20 @@ public class EntregaController {
         model.addAttribute("entrega", service.listarEntrega(token));
 
         return "entrega";
-    }
+    }   
+    @GetMapping("/endereco")
+    public String listarEndereco(HttpSession session, Model model) {
+
+        String token = (String) session.getAttribute("token");
+
+        if (token == null || token.isBlank()) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("entrega", service.listarEntEnd(token));
+
+        return "entregaEndereco";
+    }    
     @GetMapping("/criar")
     public String criarForm(Model model, HttpSession session) {
         String token = (String) session.getAttribute("token");

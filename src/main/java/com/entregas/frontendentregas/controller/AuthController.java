@@ -34,7 +34,7 @@ public class AuthController {
         
      if (token == null || token.isBlank()) {
     return "redirect:/login";
-}     model.addAttribute("entrega", authservice.listarEntrega(token));
+}     model.addAttribute("entrega", authservice.listarEntEnd(token));
       model.addAttribute("motorista", authservice.listarMoto(token));
       model.addAttribute("endereco", authservice.listarEndereco(token));
        
