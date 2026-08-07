@@ -43,8 +43,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <div th:replace="~{fragments/layout :: custom-header}"></div>
 <h3 class="tela">Lista das Entregas</h3>
 <div class="entrega">
-    <a class="btn btn-primary" th:href="@{/entrega/list}">
-    Visualizar as entregas com id
+<a class="btn btn-primary" th:href="@{/entrega/criar}">
+    Nova entrega
 </a>
     <br><br>
 <table>
@@ -54,13 +54,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <th>Status</th>
         <th>Rua</th>
         <th>Motorista</th>
+        <th>Editar Produto</th>
+        <th>Adicionar Motorista</th>
+        <th>Editar Status</th>        
     </tr>
     <tr th:each="f : ${entrega}">
         <td th:text="${f.produto}"></td>
         <td th:text="${f.descricao}"></td>
         <td th:text="${f.status}"></td>
         <td th:text="${f.rua}"></td>
-        <td th:text="${f.motorista}"></td>         
+        <td th:text="${f.motorista}"></td>
+        <td>
+            <a class="btn btn-secondary" th:href="@{/entrega/editarE(id=${f.id})}">Editar</a>
+        </td>
+        <td>
+            <a class="btn btn-secondary" th:href="@{/entrega/motoristaE(id=${f.id})}">Adicionar</a>
+        </td>
+        <td>
+            <a class="btn btn-secondary" th:href="@{/entrega/statusE(id=${f.id})}">Editar</a>
+        </td>         
     </tr>
 </table>
 </div> 

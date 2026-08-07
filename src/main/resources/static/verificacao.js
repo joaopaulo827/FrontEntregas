@@ -6,10 +6,10 @@ function validarCadastro(){
     const nome = document.getElementById("nome");
     const email = document.getElementById("email");
     const senha = document.getElementById("senha");
-    const confirma= document.getElementById("confirmar");
+    const confirmar= document.getElementById("confirmar");
     const botao = document.getElementById("botao");
     
-    if(nome.value.length>0 && email.value.length>0 && senha.value.length>0 && confirma.value.length>0){
+    if(nome.value.length>0 && email.value.length>0 && senha.value.length>0 && confirmar.value.length>0){
         botao.disabled=false;
     }
 }

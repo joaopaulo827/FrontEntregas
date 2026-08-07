@@ -76,19 +76,29 @@
     <main>
         <form th:action="@{/motorista/salvar}" th:object="${motorista}" method="post">
             <input type="hidden" th:field="*{id}"/>
+            
             <label for="nome">Nome:</label>
-            <input id="nome" type="text" th:field="*{nome}"/>
+            <input id="nome" oninput="validarMotorista()" type="text" th:field="*{nome}" required/>
             <label for="status">Status:</label>
+            
             <select id="status" th:field="*{status}">
                 <option value="ATIVO">ATIVO</option>
                 <option value="INATIVO">INATIVO</option>
             </select>
-            <button type="submit">Salvar</button>
+            <button type="submit" id="botao" disabled>Salvar</button>
         </form>
         <a th:href="@{/motorista/list}" class="btn btn-secondary btn-cancelar">
             Cancelar
         </a>
     </main>
 </div>
+<script>
+function validarMotorista() {
+    const nome = document.getElementById("nome");
+    const botao = document.getElementById("botao");
+
+    botao.disabled = !(nome.value.trim());
+}
+</script>      
 </body>
 </html>

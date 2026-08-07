@@ -85,7 +85,7 @@
       method="post">
 
     <label>Nome</label>
-    <input type="text" th:field="*{nome}">
+    <input type="text" id="nome" oninput="validarMotorista()" th:field="*{nome}" required>
     <br><br>
 
     <label>Status</label>
@@ -93,7 +93,7 @@
     <option value="ATIVO">ATIVO</option>
     </select>
     <br>
-    <button type="submit" class="btn btn-success">
+    <button type="submit"  id="botao" class="btn btn-success" disabled >
     Salvar
     </button>
 </form>
@@ -102,5 +102,13 @@
         Cancelar
     </a>
 </div>
+<script>
+function validarMotorista() {
+    const nome = document.getElementById("nome");
+    const botao = document.getElementById("botao");
+
+    botao.disabled = !(nome.value.trim());
+}
+</script>     
 </body>
 </html>

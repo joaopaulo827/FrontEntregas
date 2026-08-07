@@ -78,14 +78,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         }         
     </style>    
     <body>
-        <div class="container">
-        <h2>Editar Entrega</h2>
-        <main>           
+    <div class="container">
+    <h2>Editar Entrega</h2>
+    <main>           
             <form th:action="@{/entrega/salvar}"th:object="${entrega}"method="post">
             <input type="hidden" th:field="*{id}" />
             
             <label>Nome:</label>
-            <input type="text" th:field="*{produto}" /><br>
+            <input type="text" id="produto" oninput="validarEntrega()" th:field="*{produto}" required/><br>
             
             <label>Descrição:</label>
             <input type="text" th:field="*{descricao}" /><br>
@@ -99,14 +99,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </option>
             </select>
             <br>
-            <button type="submit">Salvar</button>
+            <button type="submit" id="botao" disabled>Salvar</button>
         </form>
             <br>
             <a class="btn btn-secondary"
             th:href="@{/entrega/list}">
             Cancelar
             </a>            
-        </main>
-        </div>            
+    </main>
+    </div>
+    <script>
+    function validarEntrega() {
+        const nome = document.getElementById("produto");
+        const botao = document.getElementById("botao");
+
+        botao.disabled = !(nome.value.trim());
+    }
+    </script>          
     </body>
 </html>

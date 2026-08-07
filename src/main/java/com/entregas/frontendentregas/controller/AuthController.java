@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.entregas.frontendentregas.controller;
-import com.entregas.frontendentregas.model.EntregaDTO;
 import com.entregas.frontendentregas.model.UserDTO;
 import com.entregas.frontendentregas.model.UserRequestDTO;
 import com.entregas.frontendentregas.service.AuthRestClientService;

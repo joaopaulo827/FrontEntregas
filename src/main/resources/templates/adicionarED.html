@@ -88,11 +88,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       method="post">
 
     <label>Rua:</label>
-    <input type="text" th:field="*{rua}">
+    <input type="text" id="rua" oninput="validarEndereco()" th:field="*{rua}" required>
     <br><br>
 
     <label>Numero:</label>
-    <input type="number" th:field="*{numero}" min="1">
+    <input type="number" id="numero" oninput="validarEndereco()" th:field="*{numero}" min="1" required>
     <br><br>
 
     <label>Cidade:</label>
@@ -103,7 +103,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <option value="Cambé">Cambé</option>            
     </select><br><br>
     
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" id="botao" class="btn btn-primary" disabled>
         Salvar
     </button>
 </form>
@@ -112,5 +112,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         Cancelar
     </a>    
 </div>
+<script>
+function validarEndereco() {
+    const rua = document.getElementById("rua");
+    const numero = document.getElementById("numero");
+    const botao = document.getElementById("botao");
+
+    botao.disabled = !(rua.value.trim() && numero.value.trim());
+}
+</script>  
 </body>
 </html>

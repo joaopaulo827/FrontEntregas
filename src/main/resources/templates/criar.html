@@ -85,7 +85,7 @@
       method="post">
 
     <label>Produto</label>
-    <input type="text" th:field="*{produto}">
+    <input type="text" id="produto" oninput="validarEntrega()" th:field="*{produto}" required>
     <br><br>
 
     <label>Descrição</label>
@@ -99,14 +99,13 @@
     
     <label>Endereço</label>
     <select th:field="*{enderecoId}">
-    <option value="">Selecione um endereço</option>
     <option th:each="e : ${enderecos}"
     th:value="${e.id}"
     th:text="${e.cidade}">
     </option>
     </select>
     <br><br>
-    <button type="submit" class="btn btn-success">
+    <button type="submit" id="botao" disabled class="btn btn-success">
         Salvar
     </button>
 </form>
@@ -115,5 +114,13 @@
         Cancelar
     </a>
 </div>
+<script>
+function validarEntrega() {
+    const nome = document.getElementById("produto");
+    const botao = document.getElementById("botao");
+
+    botao.disabled = !(nome.value.trim());
+}
+</script>       
 </body>
 </html>

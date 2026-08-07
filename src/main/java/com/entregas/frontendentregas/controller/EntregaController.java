@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -72,7 +71,7 @@ public class EntregaController {
 
         service.criarEntrega(entrega, token);
 
-        return "redirect:/entrega/list";
+        return "redirect:/entrega/endereco";
     }
     @GetMapping("/editarE")
     public String editar(@RequestParam Long id, Model model, HttpSession session) {
@@ -108,16 +107,16 @@ public class EntregaController {
     @PostMapping("/salvar")
     public String salvarDados(@ModelAttribute  EntregaDTO entrega){
     service.atualizarEntrega(entrega);
-    return "redirect:/entrega/list";        
+    return "redirect:/entrega/endereco";        
     }
     @PostMapping("/salvarMotorista")
     public String salvarMotorista(EntregaDTO entrega) {
         service.atualizarIdMotorista(entrega);
-        return "redirect:/entrega/list";
+        return "redirect:/entrega/endereco";
     }
     @PostMapping("/salvarStatus")
     public String salvarStatus(EntregaDTO entrega) {
         service.atualizarStatus(entrega);
-        return "redirect:/entrega/list";
+        return "redirect:/entrega/endereco";
     }    
 }    
